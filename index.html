@@ -1,0 +1,75 @@
+
+    <!DOCTYPE html>
+    <html lang="en">    
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Music Player</title>
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+      <link rel="stylesheet" href="Assets/CSS/style.css" />
+    </head>
+    
+    <body>
+      <div id="main">
+        <div id="first"></div>
+        <div id="last">
+          <h3>Recommendation</h3>
+          <div id="reco"></div>
+        </div>
+      </div>
+      
+      <div id="secmain">
+        <div id="player">
+          <h3 id="backward"><i class="ri-skip-back-fill"></i></h3>
+          <h3 id="play"><i class="ri-play-fill"></i></h3>
+          <h3 id="pause"><i class="ri-pause-fill"></i></h3>
+          <h3 id="forward"><i class="ri-skip-forward-fill"></i></h3>
+        </div>
+        <div class="player2">
+          <audio id="audio" src="Assets/song/Casablanca - As Time Goes By - Original Song by Sam (Dooley Wilson).mp3"></audio>
+          <label for="volumeControl">Volume</label>
+          <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5" />
+          <br>
+          <label for="progressControl">Progress</label>
+          <input type="range" id="progressControl" min="0" max="100" step="1" value="0" />
+        </div>
+      </div>
+      <!-- Song ko details ko -->
+    <div id="editModal" style="display:none;">
+        <form id="editForm">
+            <input type="hidden" id="editId" />
+            <label for="editSongName">Song Name:</label>
+            <input type="text" id="editSongName" required />
+            <label for="editUrl">URL:</label>
+            <input type="text" id="editUrl" required />
+            <label for="editImg">Image URL:</label>
+            <input type="text" id="editImg" required />
+            <button type="button" onclick="submitEdit()">Save</button>
+        </form>
+    </div>
+    
+    <script>
+    function editSong(id) {
+        const card = document.querySelector(`.card[data-id='${id}']`);
+        document.getElementById('editId').value = id;
+        document.getElementById('editSongName').value = card.querySelector('h2').textContent;
+        document.getElementById('editUrl').value = card.getAttribute('data-url');
+        document.getElementById('editImg').value = card.querySelector('img').src;
+        document.getElementById('editModal').style.display = 'block';
+    }
+    
+    function submitEdit() {
+        const id = document.getElementById('editId').value;
+        const songName = document.getElementById('editSongName').value;
+        const url = document.getElementById('editUrl').value;
+        const img = document.getElementById('editImg').value;
+    
+        updateSong(id, songName, url, img);
+        document.getElementById('editModal').style.display = 'none';
+    }
+    </script>
+    
+      <script src="Assets/JS/script.js"></script>
+    </body>
+      </html>
+  
