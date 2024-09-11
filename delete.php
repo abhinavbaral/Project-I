@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 include 'db.php';
 
 $id = $_POST['id'];
@@ -12,4 +12,4 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-?>
+?> -->
